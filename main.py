@@ -18,6 +18,8 @@ camera.brightness = 50
 camera.saturation = 0
 camera.rotation = 180
 
+os.system('clear')
+
 while True:
     input_state = GPIO.input(3)
     if input_state == False:
@@ -33,4 +35,5 @@ while True:
         filename = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S.bmp')
         image_file.save('/home/FC_island/output/'+filename)
         os.remove('/home/FC_island/output/tmp.jpg')
+        print ("_ image saved : " + filename)
         time.sleep(1)
