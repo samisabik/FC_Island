@@ -35,5 +35,6 @@ while True:
         filename = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S.bmp')
         image_file.save('/home/FC_island/output/'+filename)
         os.remove('/home/FC_island/output/tmp.jpg')
-        print ("_ image saved : " + filename)
+        os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/output/'+filename)
+        print ("_ "+filename+" successfully printed!")
         time.sleep(1)
