@@ -30,6 +30,7 @@ while True:
         output.save('/home/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/FC_island/output/tmp.jpg')
         image_file = image_file.convert('1')
-        filename = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S.bmp")
+        filename = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S.bmp')
         image_file.save('/home/FC_island/output/'+filename)
+        os.remove('/home/FC_island/output/tmp.jpg')
         time.sleep(1)
