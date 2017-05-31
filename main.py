@@ -4,6 +4,9 @@ import RPi.GPIO as GPIO
 from PIL import Image
 from PIL import ImageEnhance
 
+CONTRAST_VALUE = 3
+BRIGHTNESS_VALUE = 3
+
 if not os.path.exists('output'):
     os.makedirs('output')
 
@@ -26,9 +29,9 @@ while True:
         camera.capture('/home/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/FC_island/output/tmp.jpg')
         enhancer = ImageEnhance.Brightness(image_file)
-        img_bright = enhancer.enhance(3)
+        img_bright = enhancer.enhance(BRIGHTNESS_VALUE)
         enhancer = ImageEnhance.Contrast(img_bright)
-        output = enhancer.enhance(3)
+        output = enhancer.enhance(CONTRAST_VALUE)
         output.save('/home/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/FC_island/output/tmp.jpg')
         image_file = image_file.convert('1')
@@ -36,5 +39,5 @@ while True:
         image_file.save('/home/FC_island/output/'+filename)
         os.remove('/home/FC_island/output/tmp.jpg')
         os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/output/'+filename)
-        print ("_ "+filename+" successfully printed!")
+        print (filename+" successfully printed!")
         time.sleep(1)
