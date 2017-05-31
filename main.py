@@ -5,7 +5,7 @@ from PIL import Image
 from PIL import ImageEnhance
 
 if not os.path.exists('output'):
-    os.makedirs('output'')
+    os.makedirs('output)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
