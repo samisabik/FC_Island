@@ -1,5 +1,6 @@
+import t_printer_lib
 import picamera
-import datetime,time,os
+import datetime,time,os,sys
 import RPi.GPIO as GPIO
 from PIL import Image
 from PIL import ImageEnhance
@@ -9,6 +10,20 @@ BRIGHTNESS_VALUE = 4.6
 
 if not os.path.exists('output'):
     os.makedirs('output')
+
+if len(sys.argv) == 2:
+    serialport = sys.argv[1]
+else:
+    serialport = ThermalPrinter.SERIALPORT
+
+if not os.path.exists(serialport):
+    sys.exit("ERROR: Serial port not found at: %s" % serialport)
+
+p = ThermalPrinter(serialport=serialport)
+
+p.print_text("\nHello maailma. How's it going?\n")
+p.inverse()
+p.print_text("\nTEST\n")
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
