@@ -21,8 +21,9 @@ p = ThermalPrinter(serialport=serialport)
 p.reset()
 p.online()
 p.wake()
-p.inverse()
-p.bold()
+
+p.inverse(True)
+p.bold(True)
 p.justify("C")
 
 GPIO.setmode(GPIO.BCM)
@@ -35,13 +36,8 @@ camera.rotation = 180
 os.system('clear')
 
 while True:
-    p.sleep()
     input_state = GPIO.input(3)
     if input_state == False:
-        p.wake()
-        p.inverse()
-        p.bold()
-        p.justify("C")
         camera.capture('/home/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/FC_island/output/tmp.jpg')
         enhancer = ImageEnhance.Brightness(image_file)
