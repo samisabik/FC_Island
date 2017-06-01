@@ -1,4 +1,4 @@
-import t_printer_lib
+from t_printer_lib import *
 import picamera
 import datetime,time,os,sys
 import RPi.GPIO as GPIO
