@@ -25,8 +25,6 @@ while True:
     input_state = GPIO.input(3)
     if input_state == False:
         print ("printing moment #"+str(M_ID))
-        p.print_text("Fictional Island JDW2017\n")
-        time.sleep(0.1)
-        p.print_text("Moment #"+str(M_ID)+"\n")
+        p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
         M_ID = M_ID + 1
         time.sleep(1)
