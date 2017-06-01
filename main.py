@@ -15,10 +15,6 @@ GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 camera = picamera.PiCamera()
 camera.resolution = (384, 1944)
-camera.sharpness = 0
-camera.contrast = 0
-camera.brightness = 50
-camera.saturation = 0
 camera.rotation = 180
 
 os.system('clear')
@@ -39,7 +35,7 @@ while True:
         image_file.save('/home/FC_island/output/'+filename)
         os.remove('/home/FC_island/output/tmp.jpg')
         os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/output/'+filename)
-        time.sleep(0.5)
-        os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/src/fc_spacer.bmp')
+        time.sleep(0.1)
+        os.system('lpr -P ZJ-58-4 -o scaling=200 /home/FC_island/src/fc_spacer.bmp')
         print (filename+" successfully printed!")
         time.sleep(1)
