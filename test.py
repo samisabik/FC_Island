@@ -16,6 +16,7 @@ p.reset()
 p.online()
 p.wake()
 p.inverse()
+p.bold()
 p.justify("C")
 
 GPIO.setmode(GPIO.BCM)
