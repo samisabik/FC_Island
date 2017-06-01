@@ -12,8 +12,11 @@ print "Testing printer on port %s" % serialport
 p = ThermalPrinter(serialport=serialport)
 
 M_ID = 0
-#p.inverse()
-#p.justify("C")
+p.reset()
+p.online()
+p.wake()
+p.inverse()
+p.justify("C")
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
