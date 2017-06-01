@@ -1,5 +1,6 @@
 from t_printer_lib import *
 import sys, os
+import RPi.GPIO as GPIO
 
 if len(sys.argv) == 2:
     serialport = sys.argv[1]
