@@ -18,10 +18,6 @@ if not os.path.exists(serialport):
 print "Testing printer on port %s" % serialport
 p = ThermalPrinter(serialport=serialport)
 
-p.inverse(True)
-p.bold(True)
-p.justify("C")
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -46,12 +42,19 @@ while True:
         filename = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S.bmp')
         image_file.save('/home/pi/FC_island/output/'+filename)
         os.remove('/home/pi/FC_island/output/tmp.jpg')
+        p.inverse(True)
+        p.bold(True)
+        p.justify("C")
         time.sleep(1)
         p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
         time.sleep(1)
         os.system('lpr -P ZJ-58-4 -o fit-to-page /home/pi/FC_island/output/'+filename)
         time.sleep(1)
         os.system('lpr -P ZJ-58-4 -o scaling=200 /home/pi/FC_island/src/fc_spacer.bmp')
+        time.sleep(1)
+        p.inverse(True)
+        p.bold(True)
+        p.justify("C")
         time.sleep(1)
         p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
         print (filename+" successfully printed!")
