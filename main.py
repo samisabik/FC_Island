@@ -4,8 +4,8 @@ import RPi.GPIO as GPIO
 from PIL import Image
 from PIL import ImageEnhance
 
-CONTRAST_VALUE = 3
-BRIGHTNESS_VALUE = 3
+CONTRAST_VALUE = 2
+BRIGHTNESS_VALUE = 4.6
 
 if not os.path.exists('output'):
     os.makedirs('output')
@@ -40,6 +40,6 @@ while True:
         os.remove('/home/FC_island/output/tmp.jpg')
         os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/output/'+filename)
         time.sleep(0.5)
-        os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/src/fc_spacer.png')
+        os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/src/fc_spacer.bmp')
         print (filename+" successfully printed!")
         time.sleep(1)
