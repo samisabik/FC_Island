@@ -8,19 +8,21 @@ from PIL import ImageEnhance
 CONTRAST_VALUE = 2
 BRIGHTNESS_VALUE = 4.6
 M_ID = 0
-if not os.path.exists('output'):
-    os.makedirs('output')
 
 if len(sys.argv) == 2:
     serialport = sys.argv[1]
 else:
     serialport = ThermalPrinter.SERIALPORT
-
 if not os.path.exists(serialport):
     sys.exit("ERROR: Serial port not found at: %s" % serialport)
-
+print "Testing printer on port %s" % serialport
 p = ThermalPrinter(serialport=serialport)
+
+p.reset()
+p.online()
+p.wake()
 p.inverse()
+p.bold()
 p.justify("C")
 
 GPIO.setmode(GPIO.BCM)
@@ -47,8 +49,7 @@ while True:
         filename = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S.bmp')
         image_file.save('/home/FC_island/output/'+filename)
         os.remove('/home/FC_island/output/tmp.jpg')
-        p.print_text("Fictional Island JDW2017\n")
-        p.print_text("Moment #"+str(M_ID))
+        p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
         time.sleep(0.1)
         os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/output/'+filename)
         time.sleep(0.1)
