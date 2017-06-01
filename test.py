@@ -24,9 +24,9 @@ GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 while True:
     input_state = GPIO.input(3)
     if input_state == False:
-        p.linefeed(10)
         print ("printing moment #"+str(M_ID))
         p.print_text("Fictional Island JDW2017\n")
-        p.print_text("Moment #"+str(M_ID))
+        time.sleep(0.1)
+        p.print_text("Moment #"+str(M_ID)+"\n")
         M_ID = M_ID + 1
         time.sleep(1)
