@@ -34,9 +34,7 @@ os.system('clear')
 
 while True:
     input_state = GPIO.input(3)
-    p.sleep()
     if input_state == False:
-        p.wake()
         camera.capture('/home/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/FC_island/output/tmp.jpg')
         enhancer = ImageEnhance.Brightness(image_file)
