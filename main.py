@@ -22,7 +22,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 camera = picamera.PiCamera()
-camera.resolution = (384, 1944)
+camera.resolution = (384, 1500)
 camera.rotation = 180
 
 os.system('clear')
