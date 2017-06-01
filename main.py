@@ -35,8 +35,13 @@ camera.rotation = 180
 os.system('clear')
 
 while True:
+    p.sleep()
     input_state = GPIO.input(3)
     if input_state == False:
+        p.wake()
+        p.inverse()
+        p.bold()
+        p.justify("C")
         camera.capture('/home/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/FC_island/output/tmp.jpg')
         enhancer = ImageEnhance.Brightness(image_file)
@@ -49,6 +54,12 @@ while True:
         filename = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S.bmp')
         image_file.save('/home/FC_island/output/'+filename)
         os.remove('/home/FC_island/output/tmp.jpg')
+        p.wake()
+        time.sleep(0.1)
+        p.inverse()
+        p.bold()
+        p.justify("C")
+        time.sleep(0.1)
         p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
         time.sleep(0.1)
         os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/output/'+filename)
