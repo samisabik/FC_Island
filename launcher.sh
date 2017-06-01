@@ -2,5 +2,5 @@
 # launcher.sh
 # navigate to home directory, then to this directory, then execute python script, then back home
 
-cd /home/FC_island
+cd /home/pi/FC_island
 sudo python main.py
