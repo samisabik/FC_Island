@@ -20,10 +20,8 @@ if not os.path.exists(serialport):
     sys.exit("ERROR: Serial port not found at: %s" % serialport)
 
 p = ThermalPrinter(serialport=serialport)
-
-p.print_text("\nHello maailma. How's it going?\n")
 p.inverse()
-p.print_text("\nTEST\n")
+p.justify("C")
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -36,7 +34,9 @@ os.system('clear')
 
 while True:
     input_state = GPIO.input(3)
+    p.sleep()
     if input_state == False:
+        p.wake()
         camera.capture('/home/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/FC_island/output/tmp.jpg')
         enhancer = ImageEnhance.Brightness(image_file)
@@ -49,6 +49,9 @@ while True:
         filename = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S.bmp')
         image_file.save('/home/FC_island/output/'+filename)
         os.remove('/home/FC_island/output/tmp.jpg')
+        p.print_text("Fictional Island JDW2017\n")
+        p.print_text("Moment #1")
+        time.sleep(0.1)
         os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/output/'+filename)
         time.sleep(0.1)
         os.system('lpr -P ZJ-58-4 -o scaling=200 /home/FC_island/src/fc_spacer.bmp')
