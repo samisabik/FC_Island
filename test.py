@@ -1,5 +1,5 @@
 from t_printer_lib import *
-import sys, os
+import sys, os, time
 import RPi.GPIO as GPIO
 
 if len(sys.argv) == 2:
