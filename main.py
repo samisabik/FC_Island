@@ -65,6 +65,8 @@ while True:
         os.system('lpr -P ZJ-58-4 -o fit-to-page /home/FC_island/output/'+filename)
         time.sleep(0.1)
         os.system('lpr -P ZJ-58-4 -o scaling=200 /home/FC_island/src/fc_spacer.bmp')
+        time.sleep(0.1)
+        p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
         print (filename+" successfully printed!")
         M_ID = M_ID + 1
         time.sleep(1)
