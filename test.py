@@ -13,8 +13,6 @@ p = ThermalPrinter(serialport=serialport)
 
 M_ID = 0
 p.reset()
-p.online()
-p.wake()
 p.inverse()
 p.bold()
 p.justify("C")
