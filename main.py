@@ -40,7 +40,7 @@ while True:
         output.save('/home/pi/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/pi/FC_island/output/tmp.jpg')
         image_file = image_file.convert('1')
-        filename = str(M_ID) + '.bmp')
+        filename = (str(M_ID) + '.bmp')
         image_file.save('/home/pi/FC_island/output/'+filename)
         os.remove('/home/pi/FC_island/output/tmp.jpg')
         p.inverse(True)
