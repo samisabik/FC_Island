@@ -65,6 +65,8 @@ while True:
         os.system('lpr -P '+PRINTER+' -o fit-to-page /home/pi/FC_island/output/'+filename)
         time.sleep(0.5)
         os.system('lpr -P '+PRINTER+' -o scaling=200 /home/pi/FC_island/src/fc_spacer.bmp')
-        #p.linefeed(3)
+        time.sleep(0.5)
+        p = ThermalPrinter(serialport=serialport)
+        p.linefeed(10)
         M_ID = M_ID + 1
         time.sleep(120)
