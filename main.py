@@ -8,6 +8,7 @@ from PIL import ImageEnhance
 CONTRAST_VALUE = 2
 BRIGHTNESS_VALUE = 4.6
 M_ID = 0
+PRINTER = 'ZJ-58-4'
 
 if len(sys.argv) == 2:
     serialport = sys.argv[1]
@@ -39,7 +40,7 @@ while True:
         output.save('/home/pi/FC_island/output/tmp.jpg')
         image_file = Image.open('/home/pi/FC_island/output/tmp.jpg')
         image_file = image_file.convert('1')
-        filename = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S.bmp')
+        filename = str(M_ID) + '.bmp')
         image_file.save('/home/pi/FC_island/output/'+filename)
         os.remove('/home/pi/FC_island/output/tmp.jpg')
         p.inverse(True)
@@ -48,9 +49,9 @@ while True:
         time.sleep(1)
         p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
         time.sleep(1)
-        os.system('lpr -P ZJ-58-4 -o fit-to-page /home/pi/FC_island/output/'+filename)
+        os.system('lpr -P +'PRINTER'+ -o fit-to-page /home/pi/FC_island/output/'+filename)
         time.sleep(1)
-        os.system('lpr -P ZJ-58-4 -o scaling=200 /home/pi/FC_island/src/fc_spacer.bmp')
+        os.system('lpr -P +'PRINTER'+ -o scaling=200 /home/pi/FC_island/src/fc_spacer.bmp')
         time.sleep(1)
         p.inverse(True)
         p.bold(True)
