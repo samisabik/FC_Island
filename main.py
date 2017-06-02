@@ -7,8 +7,6 @@ from PIL import Image,ImageEnhance
 CONTRAST_VALUE = 2
 BRIGHTNESS_VALUE = 4.6
 PRINTER = 'ZJ-58-4'
-SERIALPORT = '/dev/ttyUSB0'
-BAUDRATE = 19200
 
 if not os.path.exists('output'):
     os.makedirs('output')
