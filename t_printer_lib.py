@@ -7,7 +7,6 @@ from time import sleep
 
 class ThermalPrinter(object):
 
-    SERIALPORT = '/dev/ttyUSB0'
     BAUDRATE = 19200
     TIMEOUT = 3
 

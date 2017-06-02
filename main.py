@@ -1,14 +1,14 @@
 from t_printer_lib import *
-import picamera
-import datetime,time,os,sys,glob
+import datetime,time,os,sys,glob,picamera
 import RPi.GPIO as GPIO
-from PIL import Image
-from PIL import ImageEnhance
+from PIL import Image,ImageEnhance
 
-#IMPORTANT STUFF here
+#SETTINGS
 CONTRAST_VALUE = 2
 BRIGHTNESS_VALUE = 4.6
 PRINTER = 'ZJ-58-4'
+SERIALPORT = '/dev/ttyUSB0'
+BAUDRATE = 19200
 
 if not os.path.exists('output'):
     os.makedirs('output')
@@ -67,7 +67,6 @@ while True:
         os.system('lpr -P '+PRINTER+' -o fit-to-page /home/pi/FC_island/output/'+filename)
         time.sleep(0.5)
         os.system('lpr -P '+PRINTER+' -o scaling=200 /home/pi/FC_island/src/fc_spacer.bmp')
-        time.sleep(0.5)
         #p.linefeed(3)
         M_ID = M_ID + 1
         time.sleep(120)
