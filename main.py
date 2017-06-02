@@ -16,10 +16,14 @@ if not os.path.exists('output'):
 files_path = os.path.join('output', '*')
 files = sorted(
     glob.iglob(files_path), key=os.path.getctime, reverse=True)
-name = files[0]
-name = name.replace('.bmp','')
-name = name.replace('output/','')
-M_ID = name
+
+if files:
+    name = files[0]
+    name = name.replace('.bmp','')
+    name = name.replace('output/','')
+    M_ID = int(name)
+else:
+    M_ID = 0
 
 if len(sys.argv) == 2:
     serialport = sys.argv[1]
