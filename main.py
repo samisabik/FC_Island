@@ -66,7 +66,7 @@ while True:
         time.sleep(0.5)
         os.system('lpr -P '+PRINTER+' -o scaling=200 /home/pi/FC_island/src/fc_spacer.bmp')
         time.sleep(0.5)
-        p = ThermalPrinter(serialport=serialport)
-        p.linefeed(10)
         M_ID = M_ID + 1
-        time.sleep(120)
+        time.sleep(120) # change time delay here
+        p = ThermalPrinter(serialport=serialport)
+        p.linefeed(10) # change the space of empty line here
