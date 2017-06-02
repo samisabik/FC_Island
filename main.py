@@ -16,7 +16,6 @@ if not os.path.exists('output'):
 files_path = os.path.join('output', '*')
 files = sorted(
     glob.iglob(files_path), key=os.path.getctime, reverse=True)
-print files[0]
 name = files[0]
 name = name.replace('.bmp','')
 name = name.replace('output/','')
