@@ -1,14 +1,26 @@
 from t_printer_lib import *
 import picamera
-import datetime,time,os,sys
+import datetime,time,os,sys,glob
 import RPi.GPIO as GPIO
 from PIL import Image
 from PIL import ImageEnhance
 
+#IMPORTANT STUFF here
 CONTRAST_VALUE = 2
 BRIGHTNESS_VALUE = 4.6
-M_ID = 0
 PRINTER = 'ZJ-58-4'
+
+if not os.path.exists('output'):
+    os.makedirs('output')
+
+files_path = os.path.join('output', '*')
+files = sorted(
+    glob.iglob(files_path), key=os.path.getctime, reverse=True)
+print files[0]
+name = files[0]
+name = name.replace('.bmp','')
+name = name.replace('output/','')
+M_ID = name
 
 if len(sys.argv) == 2:
     serialport = sys.argv[1]
@@ -46,18 +58,13 @@ while True:
         p.inverse(True)
         p.bold(True)
         p.justify("C")
-        time.sleep(1)
+        time.sleep(0.5)
         p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
-        time.sleep(1)
+        time.sleep(0.5)
         os.system('lpr -P '+PRINTER+' -o fit-to-page /home/pi/FC_island/output/'+filename)
-        time.sleep(1)
+        time.sleep(0.5)
         os.system('lpr -P '+PRINTER+' -o scaling=200 /home/pi/FC_island/src/fc_spacer.bmp')
-        time.sleep(1)
-        p.inverse(True)
-        p.bold(True)
-        p.justify("C")
-        time.sleep(1)
-        p.print_text("Fictional Island JDW2017\nMoment #"+str(M_ID)+"\n")
-        print (filename+" successfully printed!")
+        time.sleep(0.5)
+        #p.linefeed(3)
         M_ID = M_ID + 1
         time.sleep(1)
