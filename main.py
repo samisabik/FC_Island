@@ -70,4 +70,4 @@ while True:
         time.sleep(0.5)
         #p.linefeed(3)
         M_ID = M_ID + 1
-        time.sleep(1)
+        time.sleep(120)
