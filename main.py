@@ -21,7 +21,7 @@ if files:
     name = files[0]
     name = name.replace('.bmp','')
     name = name.replace('output/','')
-    M_ID = int(name)
+    M_ID = int(name) + 1
 else:
     M_ID = 0
 
